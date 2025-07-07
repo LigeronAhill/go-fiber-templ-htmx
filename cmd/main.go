@@ -1,6 +1,8 @@
 package main
 
 import (
+	"strings"
+
 	"github.com/gofiber/contrib/fiberzerolog"
 
 	"github.com/LigeronAhill/go-fiber/config"
@@ -23,7 +25,12 @@ func main() {
 	log.Debug().Str("Database url set to", dbCfg.URL).Send()
 
 	loggerConfig := logger.New(logCfg)
+
 	engine := html.New("./html", ".html")
+	engine.AddFuncMap(map[string]interface{}{"ToUpper": func(c string) string {
+		return strings.ToUpper(c)
+	}})
+
 	app := fiber.New(fiber.Config{Views: engine})
 	app.Use(requestid.New())
 	app.Use(fiberzerolog.New(loggerConfig))
