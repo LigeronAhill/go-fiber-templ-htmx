@@ -1,0 +1,12 @@
+{{ define "title" }}
+<title>Title</title>
+{{ end }} {{ define "content" }}
+<ul>
+  {{ range . }}
+  <li>
+    <p>UserID: {{ .Id }}</p>
+    <p>UserName: {{ .Name | ToUpper }}</p>
+  </li>
+  {{ end }}
+</ul>
+{{ end }} {{ template "base" .}}
