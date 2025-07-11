@@ -1,8 +1,6 @@
 package main
 
 import (
-	"strings"
-
 	"github.com/gofiber/contrib/fiberzerolog"
 
 	"github.com/LigeronAhill/go-fiber/config"
@@ -11,7 +9,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
-	"github.com/gofiber/template/html/v2"
 )
 
 func main() {
@@ -22,16 +19,11 @@ func main() {
 	log.Info().Int("Setting log level", logCfg.Level).Send()
 
 	dbCfg := config.NewDatabaseConfig()
-	log.Debug().Str("Database url set to", dbCfg.URL).Send()
+	log.Debug().Str("Database URL set to", dbCfg.URL).Send()
 
 	loggerConfig := logger.New(logCfg)
 
-	engine := html.New("./html", ".html")
-	engine.AddFuncMap(map[string]interface{}{"ToUpper": func(c string) string {
-		return strings.ToUpper(c)
-	}})
-
-	app := fiber.New(fiber.Config{Views: engine})
+	app := fiber.New()
 	app.Use(requestid.New())
 	app.Use(fiberzerolog.New(loggerConfig))
 	app.Use(recover.New())

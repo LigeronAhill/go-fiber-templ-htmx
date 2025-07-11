@@ -20,23 +20,8 @@ func NewHandler(router fiber.Router, logger *zerolog.Logger) {
 	api.Get("/error", h.error)
 }
 
-type User struct {
-	Id   int
-	Name string
-}
-
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	users := []User{
-		{
-			Id:   1,
-			Name: "Anton",
-		},
-		{
-			Id:   2,
-			Name: "Vasya",
-		},
-	}
-	return c.Render("page", users)
+	return c.SendStatus(fiber.StatusOK)
 }
 
 func (h *HomeHandler) error(c *fiber.Ctx) error {
