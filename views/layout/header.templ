@@ -1,0 +1,21 @@
+package layout
+
+templ Header() {
+	@HeaderStyles()
+	<header class="header">
+		@Menu()
+		{ children... }
+	</header>
+}
+
+templ HeaderStyles() {
+	<style>
+    .header {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background: #222222;
+        align-items: center;
+    }
+</style>
+}

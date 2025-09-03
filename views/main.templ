@@ -1,0 +1,19 @@
+package views
+
+import "github.com/LigeronAhill/go-fiber/views/components"
+import "github.com/LigeronAhill/go-fiber/views/layout"
+
+templ Main() {
+	@layout.Layout(layout.LayoutProps{
+		Title:       "Найди работу мечты",
+		Description: "Сайт по поиску работы мечты",
+	}) {
+		<main>
+			@layout.Header() {
+				@components.Title("Найди работу своей мечты")
+				@components.SubTitle("Простой поиск работы")
+			}
+			Main
+		</main>
+	}
+}

@@ -28,6 +28,8 @@ func main() {
 	app.Use(fiberzerolog.New(loggerConfig))
 	app.Use(recover.New())
 
+	app.Static("/public", "./public")
+
 	home.NewHandler(app, log)
 
 	if err := app.Listen(":3000"); err != nil {

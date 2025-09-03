@@ -1,0 +1,46 @@
+package layout
+
+import "github.com/LigeronAhill/go-fiber/views/components"
+
+templ Menu() {
+	@MenuStyles()
+	<div class="menu">
+		<img src="/public/images/logo.svg"/>
+		<div class="menu__right">
+			<a class="menu__right-link">Войти</a>
+			@components.LinkButton("/register") {
+				<span>Зарегистрироваться</span>
+			}
+		</div>
+	</div>
+}
+
+templ MenuStyles() {
+	<style>
+    .menu {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0;
+        max-width: 1290px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .menu__right {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .menu__right-link {
+        text-decoration: none;
+        color: #fff;
+        font-size: 16px;
+    }
+
+    .menu__right-link:hover {
+        color: #9f9f9f;
+        cursor: pointer;
+    }
+</style>
+}
