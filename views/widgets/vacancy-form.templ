@@ -1,0 +1,78 @@
+package widgets
+
+import "github.com/LigeronAhill/go-fiber/views/components"
+
+templ VacancyForm() {
+	@vacancyFormStyles()
+	<div class="vacancy-form">
+		@components.TitleH2("Опубликовать вакансию")
+		<p>Введите все необходимые данные для публикации</p>
+		<form>
+			<div class="vacancy-form__inputs">
+				@components.Input(components.InputProps{
+					Placeholder: "Должность",
+					Name:        "role",
+				})
+				@components.Input(components.InputProps{
+					Placeholder: "Название компании",
+					Name:        "company",
+				})
+				@components.Input(components.InputProps{
+					Placeholder: "Сфера компании",
+					Name:        "type",
+				})
+				@components.Input(components.InputProps{
+					Placeholder: "Заработная плата",
+					Name:        "salary",
+				})
+				@components.Input(components.InputProps{
+					Placeholder: "Расположение",
+					Name:        "location",
+				})
+				@components.Input(components.InputProps{
+					Placeholder: "Контактный email",
+					Name:        "email",
+				})
+			</div>
+			@components.SubmitButton() {
+				<span>Опубликовать вакансию</span>
+			}
+		</form>
+	</div>
+}
+
+templ vacancyFormStyles() {
+	<style>
+		.vacancy-form {
+			max-width: 890px;
+			width: 100%;
+		}
+		.vacancy-form p {
+			overflow: hidden;
+			color: var(--color-black);
+			text-align: center;
+			leading-trim: both;
+			text-edge: cap;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: normal;
+			margin-bottom: 60px;
+		}
+		.vacancy-form form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.vacancy-form__inputs {
+			width: 100%;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 30px 24px;
+			margin-bottom: 30px;
+		}
+  </style>
+}

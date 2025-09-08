@@ -1,13 +1,13 @@
 package components
 
 templ LinkButton(href string) {
-	@LinkButtonStyles()
+	@linkButtonStyles()
 	<a class="link-button" href={ templ.SafeURL(href) }>
 		{ children... }
 	</a>
 }
 
-templ LinkButtonStyles() {
+templ linkButtonStyles() {
 	<style>
     .link-button {
         padding: 15px 20px;
