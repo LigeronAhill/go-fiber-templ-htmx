@@ -43,7 +43,7 @@ func VacancyForm() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<p>Введите все необходимые данные для публикации</p><form><div class=\"vacancy-form__inputs\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div id=\"vacancy-result\"></div><p>Введите все необходимые данные для публикации</p><form hx-post=\"/vacancy\" hx-trigger=\"submit\" hx-target=\"#vacancy-result\" hx-swap=\"innerHTML swap:0.5s\"><div class=\"vacancy-form__inputs\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -105,7 +105,7 @@ func VacancyForm() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<span>Опубликовать вакансию</span>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div class=\"vacancy-form__submit\">Опубликовать вакансию</div><div class=\"vacancy-form__loader\"></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -144,7 +144,7 @@ func vacancyFormStyles() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<style>\n\t\t.vacancy-form {\n\t\t\tmax-width: 890px;\n\t\t\twidth: 100%;\n\t\t}\n\t\t.vacancy-form p {\n\t\t\toverflow: hidden;\n\t\t\tcolor: var(--color-black);\n\t\t\ttext-align: center;\n\t\t\tleading-trim: both;\n\t\t\ttext-edge: cap;\n\t\t\ttext-overflow: ellipsis;\n\t\t\twhite-space: nowrap;\n\t\t\tfont-size: 16px;\n\t\t\tfont-style: normal;\n\t\t\tfont-weight: 400;\n\t\t\tline-height: normal;\n\t\t\tmargin-bottom: 60px;\n\t\t}\n\t\t.vacancy-form form {\n\t\t\tdisplay: flex;\n\t\t\tflex-direction: column;\n\t\t\talign-items: center;\n\t\t\tjustify-content: center;\n\t\t}\n\t\t.vacancy-form__inputs {\n\t\t\twidth: 100%;\n\t\t\tdisplay: grid;\n\t\t\tgrid-template-columns: 1fr 1fr;\n\t\t\tgap: 30px 24px;\n\t\t\tmargin-bottom: 30px;\n\t\t}\n  </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<style>\n\t\t.vacancy-form {\n\t\t\tmax-width: 890px;\n\t\t\twidth: 100%;\n\t\t}\n\t\t.vacancy-form p {\n\t\t\toverflow: hidden;\n\t\t\tcolor: var(--color-black);\n\t\t\ttext-align: center;\n\t\t\tleading-trim: both;\n\t\t\ttext-edge: cap;\n\t\t\ttext-overflow: ellipsis;\n\t\t\twhite-space: nowrap;\n\t\t\tfont-size: 16px;\n\t\t\tfont-style: normal;\n\t\t\tfont-weight: 400;\n\t\t\tline-height: normal;\n\t\t\tmargin-bottom: 60px;\n\t\t}\n\t\t.vacancy-form form {\n\t\t\tdisplay: flex;\n\t\t\tflex-direction: column;\n\t\t\talign-items: center;\n\t\t\tjustify-content: center;\n\t\t}\n\t\t.vacancy-form__inputs {\n\t\t\twidth: 100%;\n\t\t\tdisplay: grid;\n\t\t\tgrid-template-columns: 1fr 1fr;\n\t\t\tgap: 30px 24px;\n\t\t\tmargin-bottom: 30px;\n\t\t}\n\t\t.vacancy-form__loader {\n\t\t\tdisplay: none;\n\t\t}\n\t\t.htmx-request .vacancy-form__submit {\n\t\t\tdisplay: none;\n\t\t}\n    .htmx-request .submit-button {\n\t\t\tpointer-events: none;\n\t\t}\n\t\t.htmx-request .vacancy-form__loader {\n\t\t\t\tdisplay: block;\n        transform: rotateZ(45deg);\n        perspective: 1000px;\n        border-radius: 50%;\n        width: 48px;\n        height: 48px;\n        color: #fff;\n      }\n        .htmx-request .vacancy-form__loader:before,\n\t\t\t\t.htmx-request .vacancy-form__loader:after {\n          content: '';\n          display: block;\n          position: absolute;\n          top: 0;\n          left: 0;\n          width: inherit;\n          height: inherit;\n          border-radius: 50%;\n          transform: rotateX(70deg);\n          animation: 1s spin linear infinite;\n        }\n        .htmx-request .vacancy-form__loader:after {\n          color: #FF3D00;\n          transform: rotateY(70deg);\n          animation-delay: .4s;\n        }\n\n      @keyframes rotate {\n        0% {\n          transform: translate(-50%, -50%) rotateZ(0deg);\n        }\n        100% {\n          transform: translate(-50%, -50%) rotateZ(360deg);\n        }\n      }\n\n      @keyframes rotateccw {\n        0% {\n          transform: translate(-50%, -50%) rotate(0deg);\n        }\n        100% {\n          transform: translate(-50%, -50%) rotate(-360deg);\n        }\n      }\n\n      @keyframes spin {\n        0%,\n        100% {\n          box-shadow: .2em 0px 0 0px currentcolor;\n        }\n        12% {\n          box-shadow: .2em .2em 0 0 currentcolor;\n        }\n        25% {\n          box-shadow: 0 .2em 0 0px currentcolor;\n        }\n        37% {\n          box-shadow: -.2em .2em 0 0 currentcolor;\n        }\n        50% {\n          box-shadow: -.2em 0 0 0 currentcolor;\n        }\n        62% {\n          box-shadow: -.2em -.2em 0 0 currentcolor;\n        }\n        75% {\n          box-shadow: 0px -.2em 0 0 currentcolor;\n        }\n        87% {\n          box-shadow: .2em -.2em 0 0 currentcolor;\n        }\n      }\n   \n  </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

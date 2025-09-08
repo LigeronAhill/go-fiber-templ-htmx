@@ -5,6 +5,7 @@ import (
 
 	"github.com/LigeronAhill/go-fiber/config"
 	"github.com/LigeronAhill/go-fiber/internal/home"
+	"github.com/LigeronAhill/go-fiber/internal/vacancy"
 	"github.com/LigeronAhill/go-fiber/pkg/logger"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/recover"
@@ -31,6 +32,7 @@ func main() {
 	app.Static("/public", "./public")
 
 	home.NewHandler(app, log)
+	vacancy.NewHandler(app, log)
 
 	if err := app.Listen(":3000"); err != nil {
 		log.Fatal().AnErr("start server error", err)
