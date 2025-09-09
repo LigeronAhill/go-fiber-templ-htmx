@@ -1,0 +1,35 @@
+package views
+
+import "github.com/LigeronAhill/go-fiber/views/components"
+import "github.com/LigeronAhill/go-fiber/views/layout"
+import "github.com/LigeronAhill/go-fiber/views/widgets"
+
+templ Main() {
+	@layout.Layout(layout.LayoutProps{
+		Title:       "Найди работу мечты",
+		Description: "Сайт по поиску работы мечты",
+	}) {
+		@mainStyles()
+		<main>
+			@layout.Header() {
+				@components.Title("Найди работу своей мечты")
+				@components.SubTitle("Простой поиск работы")
+			}
+			<div class="main__submit-form">
+				@widgets.VacancyForm()
+			</div>
+		</main>
+	}
+}
+
+templ mainStyles() {
+	<style>
+		.main__submit-form {
+			background-color: rgba(48, 150, 137, 0.10);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 60px 0 120px 0;
+		}
+	</style>
+}

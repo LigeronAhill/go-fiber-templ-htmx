@@ -1,0 +1,163 @@
+package widgets
+
+import "github.com/LigeronAhill/go-fiber/views/components"
+
+templ VacancyForm() {
+	@vacancyFormStyles()
+	<div class="vacancy-form">
+		@components.TitleH2("Опубликовать вакансию")
+		<div id="vacancy-result"></div>
+		<p>Введите все необходимые данные для публикации</p>
+		<form hx-post="/vacancy" hx-trigger="submit" hx-target="#vacancy-result" hx-swap="innerHTML swap:0.5s">
+			<div class="vacancy-form__inputs">
+				@components.Input(components.InputProps{
+					Placeholder: "Должность",
+					Name:        "role",
+				})
+				@components.Input(components.InputProps{
+					Placeholder: "Название компании",
+					Name:        "company",
+				})
+				@components.Input(components.InputProps{
+					Placeholder: "Сфера компании",
+					Name:        "type",
+				})
+				@components.Input(components.InputProps{
+					Placeholder: "Заработная плата",
+					Name:        "salary",
+				})
+				@components.Input(components.InputProps{
+					Placeholder: "Расположение",
+					Name:        "location",
+				})
+				@components.Input(components.InputProps{
+					Placeholder: "Контактный email",
+					Name:        "email",
+				})
+			</div>
+			@components.SubmitButton() {
+				<div class="vacancy-form__submit">Опубликовать вакансию</div>
+				<div class="vacancy-form__loader"></div>
+			}
+		</form>
+	</div>
+}
+
+templ vacancyFormStyles() {
+	<style>
+		.vacancy-form {
+			max-width: 890px;
+			width: 100%;
+		}
+		.vacancy-form p {
+			overflow: hidden;
+			color: var(--color-black);
+			text-align: center;
+			leading-trim: both;
+			text-edge: cap;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: normal;
+			margin-bottom: 60px;
+		}
+		.vacancy-form form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.vacancy-form__inputs {
+			width: 100%;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 30px 24px;
+			margin-bottom: 30px;
+		}
+		.vacancy-form__loader {
+			display: none;
+		}
+		.htmx-request .vacancy-form__submit {
+			display: none;
+		}
+    .htmx-request .submit-button {
+			pointer-events: none;
+		}
+		.htmx-request .vacancy-form__loader {
+				display: block;
+        transform: rotateZ(45deg);
+        perspective: 1000px;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        color: #fff;
+      }
+        .htmx-request .vacancy-form__loader:before,
+				.htmx-request .vacancy-form__loader:after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: inherit;
+          height: inherit;
+          border-radius: 50%;
+          transform: rotateX(70deg);
+          animation: 1s spin linear infinite;
+        }
+        .htmx-request .vacancy-form__loader:after {
+          color: #FF3D00;
+          transform: rotateY(70deg);
+          animation-delay: .4s;
+        }
+
+      @keyframes rotate {
+        0% {
+          transform: translate(-50%, -50%) rotateZ(0deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotateZ(360deg);
+        }
+      }
+
+      @keyframes rotateccw {
+        0% {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(-360deg);
+        }
+      }
+
+      @keyframes spin {
+        0%,
+        100% {
+          box-shadow: .2em 0px 0 0px currentcolor;
+        }
+        12% {
+          box-shadow: .2em .2em 0 0 currentcolor;
+        }
+        25% {
+          box-shadow: 0 .2em 0 0px currentcolor;
+        }
+        37% {
+          box-shadow: -.2em .2em 0 0 currentcolor;
+        }
+        50% {
+          box-shadow: -.2em 0 0 0 currentcolor;
+        }
+        62% {
+          box-shadow: -.2em -.2em 0 0 currentcolor;
+        }
+        75% {
+          box-shadow: 0px -.2em 0 0 currentcolor;
+        }
+        87% {
+          box-shadow: .2em -.2em 0 0 currentcolor;
+        }
+      }
+   
+  </style>
+}
