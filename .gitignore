@@ -32,3 +32,5 @@ go.work.sum
 # .vscode/
 tmp/
 /tmp
+postgres-data/
+/postgres-data

@@ -1,7 +1,9 @@
 package home
 
 import (
-	"github.com/LigeronAhill/go-fiber/pkg/logger/tadaptor"
+	"net/http"
+
+	"github.com/LigeronAhill/go-fiber/pkg/tadaptor"
 	"github.com/LigeronAhill/go-fiber/views"
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
@@ -23,7 +25,7 @@ func NewHandler(router fiber.Router, logger *zerolog.Logger) {
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
 	component := views.Main()
-	return tadaptor.Render(c, component)
+	return tadaptor.Render(c, component, http.StatusOK)
 }
 
 func (h *HomeHandler) error(c *fiber.Ctx) error {

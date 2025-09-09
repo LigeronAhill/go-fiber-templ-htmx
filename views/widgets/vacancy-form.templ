@@ -4,11 +4,18 @@ import "github.com/LigeronAhill/go-fiber/views/components"
 
 templ VacancyForm() {
 	@vacancyFormStyles()
-	<div class="vacancy-form">
+	<div class="vacancy-form" hx-ext="response-targets">
 		@components.TitleH2("Опубликовать вакансию")
 		<div id="vacancy-result"></div>
 		<p>Введите все необходимые данные для публикации</p>
-		<form hx-post="/vacancy" hx-trigger="submit" hx-target="#vacancy-result" hx-swap="innerHTML swap:0.5s">
+		<form
+			hx-post="/vacancy"
+			hx-trigger="submit"
+			hx-target="#vacancy-result"
+			hx-target-error="#vacancy-result"
+			hx-swap="innerHTML swap:0.5s"
+			hx-on::after-request="if(event.detail.successful) this.reset()"
+		>
 			<div class="vacancy-form__inputs">
 				@components.Input(components.InputProps{
 					Placeholder: "Должность",

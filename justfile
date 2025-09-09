@@ -28,3 +28,7 @@ air:
 # watch app live reload
 watch:
     templ generate --watch --proxy="http://localhost:3000" --cmd="go run cmd/main.go"
+
+# run postgres in docker
+db:
+    @docker compose up -d
