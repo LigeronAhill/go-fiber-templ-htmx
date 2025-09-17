@@ -3,24 +3,25 @@ package components
 type InputProps struct {
 	Placeholder string
 	Name        string
+	Type        string
 }
 
 templ Input(props InputProps) {
 	@inputStyles()
-	<input class="input" placeholder={ props.Placeholder } name={ props.Name }/>
+	<input class="input" placeholder={ props.Placeholder } name={ props.Name } type={ props.Type }/>
 }
 
 templ inputStyles() {
 	<style>
-    .input {
-      height: 80px;
-      padding: 20px;
+		.input {
+			height: 80px;
+			padding: 20px;
 			border-radius: 20px;
 			border: none;
 			background: var(--color-white);
-    }
+		}
 		.input:placeholder {
 			color: var(--color-gray);
 		}
-  </style>
+	</style>
 }

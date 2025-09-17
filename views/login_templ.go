@@ -11,9 +11,9 @@ import templruntime "github.com/a-h/templ/runtime"
 import "github.com/LigeronAhill/go-fiber/views/components"
 import "github.com/LigeronAhill/go-fiber/views/layout"
 import "github.com/LigeronAhill/go-fiber/views/widgets"
-import "github.com/LigeronAhill/go-fiber/internal/vacancy"
 
-func Main(vacancies []*vacancy.Vacancy, currentPage, total int) templ.Component {
+// import "github.com/LigeronAhill/go-fiber/views/widgets"
+func Login() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -46,11 +46,11 @@ func Main(vacancies []*vacancy.Vacancy, currentPage, total int) templ.Component 
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = mainStyles().Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = loginStyles().Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, " <main>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, " ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -66,7 +66,7 @@ func Main(vacancies []*vacancy.Vacancy, currentPage, total int) templ.Component 
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = components.Title("Найди работу своей мечты").Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Title("Войти на сайт").Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -74,7 +74,15 @@ func Main(vacancies []*vacancy.Vacancy, currentPage, total int) templ.Component 
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = components.SubTitle("Простой поиск работы").Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.SubTitle("Войдите под своей учетной запсью").Render(ctx, templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, " ")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = widgets.LoginForm().Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -84,27 +92,15 @@ func Main(vacancies []*vacancy.Vacancy, currentPage, total int) templ.Component 
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = widgets.VacancyList(vacancies, currentPage, total).Render(ctx, templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"main__submit-form\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = widgets.VacancyForm().Render(ctx, templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div></main>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, " <main></main>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return nil
 		})
 		templ_7745c5c3_Err = layout.Layout(layout.LayoutProps{
-			Title:       "Найди работу мечты",
-			Description: "Сайт по поиску работы мечты",
+			Title:       "Вход на сайт",
+			Description: "Войти на сайт поиска работы",
 		}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -113,7 +109,7 @@ func Main(vacancies []*vacancy.Vacancy, currentPage, total int) templ.Component 
 	})
 }
 
-func mainStyles() templ.Component {
+func loginStyles() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {

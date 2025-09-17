@@ -14,14 +14,24 @@ templ Layout(props LayoutProps) {
 			<title>{ props.Title }</title>
 			<meta name="description" content={ props.Description }/>
 			<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.7/dist/htmx.min.js"></script>
-	    <script src="https://cdn.jsdelivr.net/npm/htmx-ext-response-targets@2.0.2"></script>
+			<script src="https://cdn.jsdelivr.net/npm/htmx-ext-response-targets@2.0.2"></script>
 			<link rel="stylesheet" href="/public/styles.css"/>
 			<link rel="preconnect" href="https://fonts.googleapis.com"/>
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+			<link rel="icon" type="image/png" href="/public/favicon/favicon-32x32.png"/>
+			<link rel="apple-touch-icon" sizes="48x48" href="/public/favicon/favicon-48x48.png"/>
+			<link rel="apple-touch-icon" sizes="72x72" href="/public/favicon/favicon-72x72.png"/>
+			<link rel="apple-touch-icon" sizes="96x96" href="/public/favicon/favicon-96x96.png"/>
+			<link rel="apple-touch-icon" sizes="256x256" href="/public/favicon/favicon-256x256.png"/>
+			<link rel="apple-touch-icon" sizes="384x384" href="/public/favicon/favicon-384x384.png"/>
+			<link rel="apple-touch-icon" sizes="512x512" href="/public/favicon/favicon-512x512.png"/>
+			<link rel="manifest" href="/public/favicon/manifest.webmanifest" crossorigin="anonymous"/>
 			<link
 				href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
 				rel="stylesheet"
 			/>
+			<meta property="og:title" content={ props.Title }/>
+			<meta property="og:description" content={ props.Description }/>
 		</head>
 		<body>
 			{ children... }

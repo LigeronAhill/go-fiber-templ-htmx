@@ -3,8 +3,9 @@ package views
 import "github.com/LigeronAhill/go-fiber/views/components"
 import "github.com/LigeronAhill/go-fiber/views/layout"
 import "github.com/LigeronAhill/go-fiber/views/widgets"
+import "github.com/LigeronAhill/go-fiber/internal/vacancy"
 
-templ Main() {
+templ Main(vacancies []*vacancy.Vacancy, currentPage, total int) {
 	@layout.Layout(layout.LayoutProps{
 		Title:       "Найди работу мечты",
 		Description: "Сайт по поиску работы мечты",
@@ -15,6 +16,7 @@ templ Main() {
 				@components.Title("Найди работу своей мечты")
 				@components.SubTitle("Простой поиск работы")
 			}
+			@widgets.VacancyList(vacancies, currentPage, total)
 			<div class="main__submit-form">
 				@widgets.VacancyForm()
 			</div>
@@ -25,7 +27,7 @@ templ Main() {
 templ mainStyles() {
 	<style>
 		.main__submit-form {
-			background-color: rgba(48, 150, 137, 0.10);
+			background-color: rgba(48, 150, 137, 0.1);
 			display: flex;
 			align-items: center;
 			justify-content: center;

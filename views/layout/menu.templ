@@ -5,11 +5,27 @@ import "github.com/LigeronAhill/go-fiber/views/components"
 templ Menu() {
 	@MenuStyles()
 	<div class="menu">
-		<img src="/public/images/logo.svg"/>
+		<a href="/">
+			<img src="/public/images/logo.svg"/>
+		</a>
 		<div class="menu__right">
-			<a class="menu__right-link">Войти</a>
-			@components.LinkButton("/register") {
-				<span>Зарегистрироваться</span>
+			{{
+		email, ok := ctx.Value("email").(string)
+		authorized := ok && email != ""
+			}}
+			if !authorized {
+				<a class="menu__right-link" href={ templ.SafeURL("/login") }>Войти</a>
+				@components.LinkButton("/register") {
+					<span>Зарегистрироваться</span>
+				}
+			} else {
+				<a
+					class="menu__right-link"
+					hx-get="/logout"
+					hx-trigger="click"
+				>
+					Выйти
+				</a>
 			}
 		</div>
 	</div>
@@ -17,30 +33,31 @@ templ Menu() {
 
 templ MenuStyles() {
 	<style>
-    .menu {
-        display: flex;
-        justify-content: space-between;
-        padding: 20px 0;
-        max-width: 1290px;
-        width: 100%;
-        align-items: center;
-    }
+		.menu {
+			display: flex;
+			justify-content: space-between;
+			padding: 20px 0;
+			max-width: 1290px;
+			width: 100%;
+			align-items: center;
+			margin-bottom: 100px;
+		}
 
-    .menu__right {
-        display: flex;
-        gap: 20px;
-        align-items: center;
-    }
+		.menu__right {
+			display: flex;
+			gap: 20px;
+			align-items: center;
+		}
 
-    .menu__right-link {
-        text-decoration: none;
-        color: #fff;
-        font-size: 16px;
-    }
+		.menu__right-link {
+			text-decoration: none;
+			color: #fff;
+			font-size: 16px;
+		}
 
-    .menu__right-link:hover {
-        color: #9f9f9f;
-        cursor: pointer;
-    }
-</style>
+		.menu__right-link:hover {
+			color: #9f9f9f;
+			cursor: pointer;
+		}
+	</style>
 }

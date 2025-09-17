@@ -1,0 +1,33 @@
+package views
+
+import "github.com/LigeronAhill/go-fiber/views/components"
+import "github.com/LigeronAhill/go-fiber/views/layout"
+import "github.com/LigeronAhill/go-fiber/views/widgets"
+
+// import "github.com/LigeronAhill/go-fiber/views/widgets"
+templ Login() {
+	@layout.Layout(layout.LayoutProps{
+		Title:       "Вход на сайт",
+		Description: "Войти на сайт поиска работы",
+	}) {
+		@loginStyles()
+		@layout.Header() {
+			@components.Title("Войти на сайт")
+			@components.SubTitle("Войдите под своей учетной запсью")
+			@widgets.LoginForm()
+		}
+		<main></main>
+	}
+}
+
+templ loginStyles() {
+	<style>
+		.main__submit-form {
+			background-color: rgba(48, 150, 137, 0.1);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 60px 0 120px 0;
+		}
+	</style>
+}

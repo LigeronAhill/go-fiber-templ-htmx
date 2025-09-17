@@ -9,5 +9,23 @@ services:
       PG_DATA: /data/postgres
     volumes:
       - ./postgres-data:/data/postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+  app:
+    container_name: go-app
+    image: go-app:latest
+    environment:
+      DATABASE_URL: "postgres://postgres:my_pass@postgres_go:5432/gofiber?sslmode=disable"
+      LOG_LEVEL: 0
+      LOG_FORMAT: "console"
     ports:
-      - "5433:5432"
+      - "3001:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: on-failure

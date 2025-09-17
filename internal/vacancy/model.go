@@ -3,6 +3,7 @@ package vacancy
 import (
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -14,6 +15,16 @@ type VacancyFormCreate struct {
 	Salary   string
 	Location string
 	Email    string
+}
+type Vacancy struct {
+	ID        int       `db:"id"`
+	Role      string    `db:"role"`
+	Company   string    `db:"company"`
+	Type      string    `db:"type"`
+	Salary    string    `db:"salary"`
+	Location  string    `db:"location"`
+	Email     string    `db:"email"`
+	CreatedAt time.Time `db:"created_at"`
 }
 
 func FromCtx(c *fiber.Ctx) VacancyFormCreate {
